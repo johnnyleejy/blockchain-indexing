@@ -1,7 +1,7 @@
 # Blockchain-Indexing
 ## Overview
 This project uses the below **libraries/frameworks**:
-1. Redis - I use Redis mainly for caching block indexes and to improve the operations for read operations. I also used Redis pubish/subscribe module to mock the publish and read stream for incoming blocks. This is unnecessary here as I could have used Eventstoredb for the readstream.
+1. Redis - I use Redis mainly for caching block indexes and fast read operations. I also used Redis pubish/subscribe module to mock the publish and read stream for incoming blocks. This is unnecessary here as I could have used Eventstoredb for the readstream.
 2. [Eventstoredb](https://www.eventstore.com/eventstoredb) - For storing and reading event logs. Events stored in this db are immutable. This is used for the **event sourcing pattern** where indexed blocks are added to the eventstore. The server can also refer back to Eventstore to rollback transactions back to their previous state.
 3. Express.js - To create APIs for block indexing, reading and invalidating operations  
 4. NodeJs
