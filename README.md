@@ -38,4 +38,11 @@ This project uses the below **libraries/frameworks**:
 11. To rollback the invalidation of block 199, fire a call to http://localhost:5000/api/blocks/rollback/199
 12. Now, you can call http://localhost:5000/api/blocks?maxHeight=199 again and verify that the transaction is rolled back.
 
-## 4.
+## 4. Suggestions for improving this task
+Drop the usage of Redis publish/subscribe as it is not persistent and reliable for streaming. I could use Redis-Streams or even eventstoredb as an alternative as a read stream. I could also use mongodb to store the blocks as mongo can handle heavy read/write operations at scale. Achieve 100% code coverage :X
+
+## 5. Anything that stands out to me
+The Address Transaction Index seems extremely complex to me. Until now, I don't have a 100% understaind of this conceppt. Because the address information is nested deep within a block, we have to navigate "deep" into the block to retrieve the address. Maybe I'm missing out something or my understanding for this index is wrong.
+
+## 6. Comments
+Maybe can provide additional examples for the address transaction index /api/blocks/{address}/transactions to better illustrate how this works.
