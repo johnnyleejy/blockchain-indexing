@@ -2,7 +2,7 @@
 ## Overview
 This project uses the below **libraries/frameworks**:
 1. Redis - I use Redis mainly for caching block indexes and to improve the operations for read operations. I also used Redis pubish/subscribe module to mock the publish and read stream for incoming blocks. This is unnecessary here as I could have used Eventstoredb for the readstream.
-2. [Eventstoredb](https://www.eventstore.com/eventstoredb) - For storing and reading event logs. Events stored in this db are immutable. This is used for the event sourcing pattern where indexed blocks are added to the eventstore. The server can also refer back to Eventstore to rollback transactions back to their previous state.
+2. [Eventstoredb](https://www.eventstore.com/eventstoredb) - For storing and reading event logs. Events stored in this db are immutable. This is used for the **event sourcing pattern** where indexed blocks are added to the eventstore. The server can also refer back to Eventstore to rollback transactions back to their previous state.
 3. Express.js - To create APIs for block indexing, reading and invalidating operations  
 4. NodeJs
 5. Jest - For unit testing
@@ -32,7 +32,7 @@ This project uses the below **libraries/frameworks**:
 5. Fire a call to http://localhost:5000/api/blocks/de7233400f5eb1dcf96442c5406f42a8c1b2e817d3eaad954474c494bba85cbf and you should see the block for the specified hash
 6. Fire a call to http://localhost:5000/api/blocks/199/transactions and you see the transactions for block 199
 7. Fire a call to http://localhost:5000/api/blocks/mwsZw8nF7pKxWH8eoKL9tPxTpaFkz7QeLU/transactions and you should see the transactions for the address: mwsZw8nF7pKxWH8eoKL9tPxTpaFkz7QeLU
-8. Finally for the rollback part.
+8. Finally to test the event sourcing pattern
 9. Start by calling http://localhost:5000/api/blocks/invalidate/199 to invalidate block 199
 10. Fire a call to http://localhost:5000/api/blocks?maxHeight=199 and verify that block 199 is no longer there
 11. To rollback the invalidation of block 199, fire a call to http://localhost:5000/api/blocks/rollback/199
