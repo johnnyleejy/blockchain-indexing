@@ -2,7 +2,7 @@
 ## Overview
 This project uses the below **libraries/frameworks**:
 1. Redis - I use Redis to mainly cache block indexes and to improve the operations for read operations. I also used Redis pubish/subscribe module to mock the publish and read stream for incoming blocks. This is unnecessary here as I could have used Eventstoredb for the readstream.
-2. [Eventstoredb](https://www.eventstore.com/eventstoredb) - For storing and reading event logs. Events stored in this db are imutable. This is used for the event sourcing pattern where indexed blocks are added to the eventstore. The server can also refer back to eventstore to rollback transactions back to their previous state.
+2. [Eventstoredb](https://www.eventstore.com/eventstoredb) - For storing and reading event logs. Events stored in this db are immutable. This is used for the event sourcing pattern where indexed blocks are added to the eventstore. The server can also refer back to Eventstore to rollback transactions back to their previous state.
 3. Express.js - To create APIs for block indexing, reading and invalidating operations  
 4. NodeJs
 5. Jest - For unit testing
@@ -12,15 +12,15 @@ This project uses the below **libraries/frameworks**:
 1. Clone project
 2. Run npm install
 3. Run docker-compose up (Image only contains the eventstoredb image)
-4. After your image is up and running, go to http://localhost:2113/web/index.html#/streams and you should see eventstoredb's stream dashboard 
-5. Install and run Redis (I'm using a microsoft archived version for redis found here: https://github.com/microsoftarchive/redis/releases)
+4. After your image is up and running, go to http://localhost:2113/web/index.html#/streams and you should see Eventstoredb's stream dashboard 
+5. Install and run Redis (I'm using a Microsoft archived version for Redis found here: https://github.com/microsoftarchive/redis/releases)
 
 ## 2. List of APIs
 1. http://localhost:5000/api/blocks - Retrieves all current blocks from Redis
 2. http://localhost:5000/api/blocks?maxHeight={height} - Retrieves all blocks up to the specified max height
 3. http://localhost:5000/api/blocks/{hash} - Retrieves the block with the specified hash
 4. http://localhost:5000/api/blocks/{height}/transactions - Retrieves the transactions for the block with the specified height
-5. http://localhost:5000/api/blocks/{address}/transactions - Retrieves all trasactions for the specified address
+5. http://localhost:5000/api/blocks/{address}/transactions - Retrieves all transactions for the specified address
 6. http://localhost:5000/api/blocks/invalidate/{height} - Invalidates a block with the specified height
 7. http://localhost:5000/api/blocks/rollback/{height} - Rolls back a block with the specified height back to its previous state
 
@@ -42,7 +42,7 @@ This project uses the below **libraries/frameworks**:
 Drop the usage of Redis publish/subscribe as it is not persistent and reliable for streaming. I could use Redis-Streams or even eventstoredb as an alternative as a read stream. I could also use mongodb to store the blocks as mongo can handle heavy read/write operations at scale. Achieve 100% code coverage :X
 
 ## 5. Anything that stands out to me
-The Address Transaction Index seems extremely complex to me. Until now, I don't have a 100% understaind of this conceppt. Because the address information is nested deep within a block, we have to navigate "deep" into the block to retrieve the address. Maybe I'm missing out something or my understanding for this index is wrong.
+The Address Transaction Index seems extremely complex to me. Until now, I don't have a 100% understand of this concept. Because the address information is nested deep within a block, we have to navigate "deep" into the block to retrieve the address. Maybe I'm missing out something or my understanding for this index is wrong.
 
 ## 6. Comments
 Maybe can provide additional examples for the address transaction index /api/blocks/{address}/transactions to better illustrate how this works.
