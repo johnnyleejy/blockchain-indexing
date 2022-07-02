@@ -60,22 +60,26 @@ export class IndexingService {
         const blockTransactions = incomingBlock["tx"];
         for (const transaction of blockTransactions) {
             for (const vout of transaction["vout"]) {
-                if (vout["scriptPubKey"]["addresses"] && vout["scriptPubKey"]["addresses"].length > 0) {
-                    for (const address of vout["scriptPubKey"]["addresses"]) {
-                        const addressTransactions = await this.mainClient.get(`Address:${address}`);
-                        if (addressTransactions !== null) {
-                            const addressTransactionArray: [any] = JSON.parse(addressTransactions);
-                            if (!addressTransactionArray.includes(transaction)) {
-                                // Add subsequent transactions for address
-                                addressTransactionArray.push(transaction);
-                                await this.mainClient.set(`${ADDRESS_INDEX_KEY}${address}`, JSON.stringify(addressTransactionArray));
-                            }
-                        }
-                        else {
-                            // Add first transaction for address
-                            await this.mainClient.set(`${ADDRESS_INDEX_KEY}${address}`, JSON.stringify([transaction]));
-                        }
+                this.findAndIndexAddress(vout, transaction);
+            }
+        }
+    }
+
+    findAndIndexAddress = async (vout: any, transaction: any) => {
+        if (vout["scriptPubKey"]["addresses"] && vout["scriptPubKey"]["addresses"].length > 0) {
+            for (const address of vout["scriptPubKey"]["addresses"]) {
+                const addressTransactions = await this.mainClient.get(`Address:${address}`);
+                if (addressTransactions !== null) {
+                    const addressTransactionArray: [any] = JSON.parse(addressTransactions);
+                    if (!addressTransactionArray.includes(transaction)) {
+                        // Add subsequent transactions for address
+                        addressTransactionArray.push(transaction);
+                        await this.mainClient.set(`${ADDRESS_INDEX_KEY}${address}`, JSON.stringify(addressTransactionArray));
                     }
+                }
+                else {
+                    // Add first transaction for address
+                    await this.mainClient.set(`${ADDRESS_INDEX_KEY}${address}`, JSON.stringify([transaction]));
                 }
             }
         }
