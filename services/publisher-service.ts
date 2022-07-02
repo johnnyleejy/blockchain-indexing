@@ -1,5 +1,5 @@
 import {publisher, subscriber} from "../app"
-import { INDEX_BLOCK_TOPIC, INVALIDATE_BLOCK_TOPIC } from '../Constants/constants';
+import { INDEX_BLOCK_TOPIC, INVALIDATE_BLOCK_TOPIC } from '../constants/constants';
 
 export class PublishingService{
     blocks: any;

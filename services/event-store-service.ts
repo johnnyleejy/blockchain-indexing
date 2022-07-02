@@ -1,6 +1,6 @@
 import { BACKWARDS, END, jsonEvent } from "@eventstore/db-client";
 import { client, indexingService } from "../app";
-import { EVENT_STORE_STREAM_NAME } from "../Constants/constants";
+import { EVENT_STORE_STREAM_NAME } from "../constants/constants";
 import { BlockAddedEvent } from "../models/block-added-event";
 import { BlockInvalidatedEvent } from "../models/block-invalidated-event";
 

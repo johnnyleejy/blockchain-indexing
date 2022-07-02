@@ -1,4 +1,4 @@
-import { ADDRESS_INDEX_KEY, BLOCKS_KEY, HASH_INDEX_KEY, HEIGHT_INDEX_KEY } from '../Constants/constants';
+import { ADDRESS_INDEX_KEY, BLOCKS_KEY, HASH_INDEX_KEY, HEIGHT_INDEX_KEY } from '../constants/constants';
 import * as redis from 'redis'
 
 export class IndexingService {

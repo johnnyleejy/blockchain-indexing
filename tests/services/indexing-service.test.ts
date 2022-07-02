@@ -1,4 +1,4 @@
-import { ADDRESS_INDEX_KEY, BLOCKS_KEY, HASH_INDEX_KEY, HEIGHT_INDEX_KEY } from "../../Constants/constants";
+import { ADDRESS_INDEX_KEY, BLOCKS_KEY, HASH_INDEX_KEY, HEIGHT_INDEX_KEY } from "../../constants/constants";
 import testBlocks from "../test-files/test-blocks.json";
 import { indexingService } from "../../app"
 

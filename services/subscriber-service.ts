@@ -3,7 +3,7 @@ import { BlockAddedEvent } from "../models/block-added-event";
 import { BlockInvalidatedEvent } from "../models/block-invalidated-event";
 import { handleEventStream } from "./event-store-service";
 import {subscriber} from "../app"
-import { INDEX_BLOCK_TOPIC, INVALIDATE_BLOCK_TOPIC } from "../Constants/constants";
+import { INDEX_BLOCK_TOPIC, INVALIDATE_BLOCK_TOPIC } from "../constants/constants";
 
 export const subscribeIndexBlocksEvent = async () => {
     await subscriber.subscribe(INDEX_BLOCK_TOPIC, (message) => {
