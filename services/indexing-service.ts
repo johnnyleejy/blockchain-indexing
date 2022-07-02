@@ -60,7 +60,7 @@ export class IndexingService {
         const blockTransactions = incomingBlock["tx"];
         for (const transaction of blockTransactions) {
             for (const vout of transaction["vout"]) {
-                this.findAndIndexAddress(vout, transaction);
+                await this.findAndIndexAddress(vout, transaction);
             }
         }
     }
