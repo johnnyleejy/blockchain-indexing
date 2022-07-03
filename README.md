@@ -14,6 +14,7 @@ This project uses the below **libraries/frameworks**:
 3. Run docker-compose up (Image only contains the eventstoredb image)
 4. After your image is up and running, go to http://localhost:2113/web/index.html#/streams and you should see Eventstoredb's stream dashboard 
 5. Install and run Redis (I'm using a Microsoft archived version for Redis found here: https://github.com/microsoftarchive/redis/releases)
+6. For running unit tests, simply use npm test
 
 ## 2. List of APIs
 1. http://localhost:5000/api/blocks - Retrieves all current blocks from Redis
