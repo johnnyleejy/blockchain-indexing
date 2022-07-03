@@ -35,9 +35,9 @@ This project uses the below **libraries/frameworks**:
 7. Fire a call to http://localhost:5000/api/blocks/mwsZw8nF7pKxWH8eoKL9tPxTpaFkz7QeLU/transactions and you should see the transactions for the address: mwsZw8nF7pKxWH8eoKL9tPxTpaFkz7QeLU
 8. Finally to test the event sourcing pattern
 9. Start by calling http://localhost:5000/api/blocks/invalidate/199 to invalidate block 199
-10. Fire a call to http://localhost:5000/api/blocks?maxHeight=199 and verify that block 199 is no longer there
+10. Fire a call to http://localhost:5000/api/blocks/199/transactions and verify that block 199 is no longer there
 11. To rollback the invalidation of block 199, fire a call to http://localhost:5000/api/blocks/rollback/199
-12. Now, you can call http://localhost:5000/api/blocks?maxHeight=199 again and verify that the transaction is rolled back.
+12. Now, you can call http://localhost:5000/api/blocks/199/transactions again and verify that the transaction is rolled back.
 
 ## 4. Suggestions for improving this task
 Drop the usage of Redis publish/subscribe as it is not persistent and reliable for streaming. I could use Redis-Streams or even eventstoredb as an alternative as a read stream. I could also use mongodb to store the blocks as mongo can handle heavy read/write operations at scale. Achieve 100% code coverage.
