@@ -40,7 +40,7 @@ This project uses the below **libraries/frameworks**:
 12. Now, you can call http://localhost:5000/api/blocks/199/transactions again and verify that the transaction is rolled back.
 
 ## 4. Suggestions for improving this task
-Drop the usage of Redis publish/subscribe as it is not persistent and reliable for streaming. I could use Redis-Streams or even eventstoredb as an alternative as a read stream. I could also use mongodb to store the blocks as mongo can handle heavy read/write operations at scale. Achieve 100% code coverage.
+Drop the usage of Redis publish/subscribe as it is not persistent and reliable for streaming. I could use Redis-Streams or even eventstoredb as an alternative as a read stream. I could also use mongodb to store the blocks as mongo can handle heavy read/write operations at scale. Achieve 100% code coverage. Create a class based on the block signature to enforce object typing instead of using string literals to access the object properties.
 
 ## 5. Anything that stands out to me
 The Address Transaction Index seems extremely complex to me. Until now, I don't have a 100% understand of this concept. Because the address information is nested deep within a block, we have to navigate "deep" into the block to retrieve the address. Maybe I'm missing out something or my understanding for this index is wrong.
